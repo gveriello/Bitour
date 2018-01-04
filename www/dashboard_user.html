@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+        <!-- CSS Files -->
+        <link href="assets/css/material-kit.css" rel="stylesheet"/>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="system/css/loader.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" rel="stylesheet"/>
+
+    </head>
+    <body style="overflow-x: hidden; height: 100%; height: auto; background-image: linear-gradient(to bottom, rgba(0,0,0, 0.1) 100%, rgba(255,255,255,0.9) 1000%), url('https://upload.wikimedia.org/wikipedia/commons/0/07/Immabitonto.JPG')">
+        <div id="initBox">
+            <div id="loader" class="animated bounceInDown" style=" background:rgba(158,158,158,0.5); display: none; ">
+                <h1 style="color: white">Attendere...caricamento in corso!</h1>
+            </div> 
+            <div id="mainBox" class="animated bounceInDown" style="margin-top: 40%; margin-left: 5%; margin-right:5%; background:rgba(158,158,158,0.5);">
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10 text-left">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Ricerca veloce</label>
+                            <input type="text" id="myInput" class="form-control">
+                        </div><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10 text-left">
+                        <ul class="list-group" id="myList">
+                            <li class="list-group-item">
+                                <a onClick="javascript:showNotizie();">Leggi le notizie di oggi</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a onClick="javascript:showEventi();">Eventi in programma</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a onClick="javascript:showPuntiRifornimento();">Punti di rifornimento</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a onClick="javascript:showTreni();">Treni in partenza/arrivo</a>
+                            </li>
+                        </ul>  
+                    </div>
+                </div><br>
+            </div>
+            <div id="notizieBox" class="animated bounceInDown" style=" background:rgba(158,158,158,0.5); display: none; ">
+                <nav class="navbar sticky-top navbar-light bg-light">
+                    <span class="navbar-brand mb-0" onClick="javascript:showMain();" style="cursor: pointer;">Torna indietro</span>
+                    <span class="navbar-brand mb-0" onClick="javascript:updateNotizie();" style="cursor: pointer;">Aggiorna</span>
+                </nav>
+                <div id="boxNotizie" style="margin-left: 5%; margin-right:5%;">
+
+                </div>
+            </div>
+            <div id="eventiBox" class="animated bounceInDown" style=" background:rgba(158,158,158,0.5); display: none; ">
+                <nav class="navbar sticky-top navbar-light bg-light">
+                    <span class="navbar-brand mb-0" onClick="javascript:showMain();" style="cursor: pointer;">Torna indietro</span>
+                </nav>
+                <div id="boxEventi" style="margin-left: 5%; margin-right:5%;">
+
+                </div>
+            </div>
+            <div id="puntirifornimentoBox" class="animated bounceInDown" style=" background:rgba(158,158,158,0.5); display: none; ">
+                <nav class="navbar sticky-top navbar-light bg-light">
+                    <span class="navbar-brand mb-0" onClick="javascript:showMain();" style="cursor: pointer;">Torna indietro</span>
+                    <span class="navbar-brand mb-0" onClick="javascript:updatePuntiRifornimento();" style="cursor: pointer;">Aggiorna</span>
+                </nav>
+                <div id="boxPuntiRifornimento" style="margin-left: 5%; margin-right:5%;">
+
+                </div>
+            </div>
+            <div id="treniBox" class="animated bounceInDown" style=" background:rgba(158,158,158,0.5); display: none; ">
+                <nav class="navbar sticky-top navbar-light bg-light">
+                    <span class="navbar-brand mb-0" onClick="javascript:showMain();" style="cursor: pointer;">Torna indietro</span>
+                    <span class="navbar-brand mb-0" onClick="javascript:updateTreni();" style="cursor: pointer;">Aggiorna</span>
+                </nav>
+                <div id="boxTreni" style="margin-left: 5%; margin-right:5%;  background:rgba(158,158,158,0.5); ">
+
+                </div>
+            </div>
+        </div>
+    </body>  
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/material.min.js"></script>
+    <script src="assets/js/nouislider.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="assets/js/material-kit.js" type="text/javascript"></script>
+    <script src="system/js/bootstrap-notify.min.js"></script>
+    <script src="system/js/app.js"></script>
+    <script src="system/js/dashboard.js"></script>
+
+    <script>
+        showLoader();
+        $("#boxNotizie").append(getNotizieToString());
+        $("#boxEventi").append(getEventiToString());
+        $("#boxTreni").append(getTreniToString());
+        $("#boxPuntiRifornimento").append(getPuntiRifornimentoToString());
+        showMain();
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myList li").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        function showLoader(){
+            $('#loader').show();
+            $('#mainBox').hide();
+            $('#notizieBox').hide();
+            $('#eventiBox').hide();
+            $('#puntirifornimentoBox').hide();
+            $('#treniBox').hide();
+        }
+        function showMain(){
+            $('#mainBox').show();
+            $('#notizieBox').hide();
+            $('#eventiBox').hide();
+            $('#puntirifornimentoBox').hide();
+            $('#treniBox').hide();
+            $('#loader').hide();
+        }
+        function showNotizie(){
+            $('#notizieBox').show();
+            $('#eventiBox').hide();
+            $('#puntirifornimentoBox').hide();
+            $('#treniBox').hide();
+            $('#mainBox').hide();
+            $('#loader').hide();
+        }
+        function showEventi(){
+            $('#eventiBox').show();
+            $('#notizieBox').hide();
+            $('#puntirifornimentoBox').hide();
+            $('#treniBox').hide();
+            $('#mainBox').hide();
+            $('#loader').hide();
+        }
+        function showPuntiRifornimento(){
+            $('#puntirifornimentoBox').show();
+            $('#notizieBox').hide();
+            $('#eventiBox').hide();
+            $('#treniBox').hide();
+            $('#mainBox').hide();
+            $('#loader').hide();
+        }
+        function showTreni(){
+            $('#treniBox').show();
+            $('#notizieBox').hide();
+            $('#eventiBox').hide();
+            $('#puntirifornimentoBox').hide();
+            $('#mainBox').hide();
+            $('#loader').hide();
+        }
+        function updateNotizie(){
+            $("#boxNotizie").html("");
+            $("#boxNotizie").append(getNotizieToString());
+        }
+        function updatePuntiRifornimento(){
+            $("#boxPuntiRifornimento").html("");
+            $("#boxPuntiRifornimento").append(getPuntiRifornimentoToString());
+        }
+        function updateTreni(){
+            $("#boxTreni").html("");
+            $("#boxTreni").append(getTreniToString());
+        }
+    </script>
+
+    <script src="cordova.js"></script>
+    <script src="xdk/init-dev.js"></script>
+</html>

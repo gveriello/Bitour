@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!-- Your app title -->
+        <title>Bitour - first page</title> 
+        <!-- Path to Framework7 iOS CSS theme styles-->
+        <link rel="stylesheet" href="framework7/css/framework7.ios.min.css">
+        <!-- Path to Framework7 iOS related color styles -->
+        <link rel="stylesheet" href="framework7/css/framework7.ios.colors.min.css">
+        <!-- Path to your custom app styles-->
+        <link rel="stylesheet" href="framework7/css/my-app.css">
+    </head>
+    <body>
+        
+    </body>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="framework7/js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="framework7/js/my-app.js"></script>
+    <script>
+        var myApp = new Framework7({
+            pushState: true,  
+            swipePanel: 'left',
+            // ... other parameters
+        });
+    </script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="system/js/init-app.js"></script>
+    <script src="system/js/app.js"></script>
+    <script src="system/js/blank_page.js"></script>
+
+    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging weinre script URL here, if it does not work below. -->
+
+    <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
+
+    <!-- "Phantom" cordova.js required for projects that use Cordova plugins. -->
+    <script src="cordova.js"></script>
+
+    <!-- for your event code, see README and file comments for details -->
+    <!-- normalizes device and document ready events, see file for details -->
+    <script src="xdk/init-dev.js"></script>
+</html>

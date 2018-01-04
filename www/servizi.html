@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html>
+    <!--
+* Please see the included README.md file for license terms and conditions.
+-->
+    <head>
+        <title>Bitontour - Benvenuto</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+              rel="stylesheet" type="text/css">
+        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+              rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+        <link href="css/loader.css" rel="stylesheet">
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/moduli.js"></script>
+        <script src="dist/sweetalert.js"></script>
+        <link rel="stylesheet" href="dist/sweetalert.css">
+    </head>
+    <body style="overflow-x: hidden;">
+        <!--Menu per le opzioni-->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <label class="navbar-brand"><a onClick="window.history.back();"><img src="img/back-icon.png"></a> <a href="servizi.html" style="color:black" class="text-center">BitonTour Official</a></label>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="servizi.html">Aggiorna informazioni</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><br><br><br><br>
+        <!--Menu per la lingua-->
+        <nav class="navbar navbar-inverse navbar-fixed-bottom"  style="overflow: hidden; background-color: white">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuLingua" style="overflow: hidden; background-color: black">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+
+                    <a class="navbar-brand" style="color: black" id="scegliLingua"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="menuLingua">
+                    <ul class="nav navbar-nav">
+                        <li onClick="setLanguage('it', 'servizi');">
+                            <a  style="color: black">
+                                <img src="http://icons.iconarchive.com/icons/mayosoft/no-patriot/32/Italia-icon.png"> 
+                                <i><b>Italiano</b></i>
+                            </a>
+                        </li>
+                        <li onClick="setLanguage('en', 'servizi');">
+                            <a  style="color: black">
+                                <img src="http://icons.iconarchive.com/icons/icons-land/vista-flags/32/United-Kingdom-Flag-2-icon.png"> <i><b>English</b></i>
+                            </a>
+                        </li>
+                        <li onClick="setLanguage('fr', 'servizi');">
+                            <a  style="color: black">
+                                <img src="http://icons.iconarchive.com/icons/mayosoft/no-patriot/32/France-icon.png"> 
+                                <i><b>Français</b></i>
+                            </a>
+                        </li>
+                        <li onClick="setLanguage('es', 'servizi');">
+                            <a  style="color: black">
+                                <img src="http://icons.iconarchive.com/icons/mayosoft/no-patriot/32/Espanya-Spain-icon.png"> 
+                                <i><b>Español</b></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#serviziTab">
+                    <label style="color:black; font-size: 25px" id="titoloServizi">Servizi per il cittadino</label>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="serviziTab" class="tab-pane fade in active">
+                <div class="panel-group"  style="overflow: hidden;">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel panel">
+                                <div class="panel-body " style="font-size: 20px">
+                                    <div id="descrizioneServizi">
+                                        Trova musei, chiese, b&b, parcheggi e molto altro.<br><br>
+                                        Per iniziare, scegli una delle categorie che ti propongo qui di seguito:<br><br>
+                                    </div>
+                                    <div id="loaderServizi">
+                                        <div id="cssLoader4" class="main-wrap">
+                                            <div class="loader">
+                                                <div class="child-common child1"></div>
+                                                <div class="child-common child2" style="left:20px;"></div>
+                                                <div class="child-common child3" style="left:40px;"></div>
+                                                <div class="child-common child4" style="left:60px;"></div>
+                                                <div class="child-common child5" style="left:80px;"></div>
+                                            </div>            
+                                        </div>
+                                    </div>
+                                    <div class="list-group" id="servizi">
+                                    </div>
+                                    <div class="list-group" id="treni">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        if (!checkConnection()){
+            alert('Devi essere connesso a internet per poter utilizzare Bitontour.');
+        }else{
+            $("#loaderServizi").show(); //avvio il loader
+
+            var totServizi = 0; //la utilizzerò per contare il numero totale di servizi scaricati
+
+            var noServizi = '';
+            //SOVRASCRIVO I TITOLO E LE DESCRIZIONI DELLA INDEX IN BASE ALLA LINGUA
+
+            var div = '';
+            var num = 0;
+            var responso = '';
+
+            //recupero i valori da impostare nella pagina
+            responso = getValue(getLanguage(), 'servizi');
+            if (getStatus(responso, 0) === "Success"){
+                if (getPagina(responso, 0) == "servizi" && getLingua(responso, 0) == getLanguage()){
+                    var json = JSON.parse(getJson(responso, 0));
+                    $('#scegliLingua').html(json.servizi[0].titoloMenu);
+                    $('#titoloServizi').html('<i class="fa fa-map" aria-hidden="true"></i> '+json.servizi[0].titoloServizi);
+                    $('#descrizioneServizi').html(json.servizi[0].descServizi + '<br><br>');
+                    noServizi = '<i class="fa fa-newspaper-o" aria-hidden="true"></i> '+json.servizi[0].noServiziMessage;
+                }
+            }
+
+            //recupero i punti di rifornimento
+            div = '';
+            responso = '';
+            num = 0;
+            responso = getBenzine();
+            num = responso.locations.length;
+            if (num > 0){
+                div = '<a href="puntirifornimento.html" class="list-group-item text-center" '
+                    +'id="a_benzine"> Punti di rifornimento <span id="benzineCount" class="badge">'+num+'</span></a>';
+            }else{
+                div = '<a onClick="swal(\'Nessun elemento inserito al momento.\');" class="list-group-item text-center"   id="a_benzine"> Punti di rifornimento <span id="benzineCount" class="badge">'+num+'</span></a>';
+            }
+            $('#servizi').append(div);
+
+
+            //recupero le farmacie
+            div = '';
+            responso = '';
+            num = 0;
+            responso = getFarmacie();
+            if (getStatus(responso, 0) === 'Success'){
+                if (getNumber(responso, 0) > 0){
+                    num = getNumber(responso, 0);
+                }
+            }
+            if (num > 0){
+                div = '<a href="farmacie.html" class="list-group-item text-center" '
+                    +'id="a_benzine"> Farmacie <span id="farmacieCount" class="badge">'+num+'</span></a>';
+            }else{
+                div = '<a onClick="swal(\'Nessuna farmacia inserita al momento.\');" class="list-group-item text-center"   id="a_farmacie"> Farmacie <span id="farmacieCount" class="badge">'+num+'</span></a>';
+            }
+            $('#servizi').append(div);
+
+            div = '';
+            responso = '';
+            num = 0;
+
+            //recupero gli orari dei treni
+            responso = getTreni();
+            num = responso.length;
+            if (num > 0){
+                div = '<a href="treni.html" class="list-group-item text-center" '
+                    +'id="a_benzine">Treni in partenza/arrivo</a>';
+            }else{
+                div = '<a onClick="swal(\'Nessun treno in partenza.\');" class="list-group-item text-center" id="a_treni">Treni in partenza/arrivo</a>';
+            }
+            $('#servizi').append(div);
+
+
+
+            //            //CHIESE-------------------------------------------------------------------
+            //            //recupero i dati sulle chiese
+            //            var div = '';
+            //            var responso = getChiese();
+            //            //se lo status è success
+            //            if (getStatus(responso, 0) === "Success"){
+            //                //e il numero delle chiese è > 0
+            //                if (getNumber(responso, 0) > 0){
+            //                    //creo il div superiore
+            //                    div = '<a href="chiese.html" class="list-group-item text-center" '
+            //                        +'id="a_chiese"> Chiese<span id="chieseCount" class="badge">'+getNumber(responso, 0)+'</span></a>';
+            //                    //creo il div collapse
+            //                    $('#servizi').append(div);
+            //                }
+            //            }
+            //            //MUSEI------------------------------------------------------------------- 
+            //            //recupero i dati sulle chiese
+            //            var div = '';
+            //            var responso = getMusei();
+            //            //se lo status è success
+            //            if (getStatus(responso, 0) === "Success"){
+            //                //e il numero delle chiese è > 0
+            //                if (getNumber(responso, 0) > 0){
+            //                    //creo il div superiore
+            //                    div = '<a href="musei.html?responso='+responso+'" class="list-group-item text-center" '
+            //                        +'id="a_musei"> Musei<span id="museiCount" class="badge">'+getNumber(responso, 0)+'</span></a>';
+            //                    //creo il div collapse
+            //                    $('#servizi').append(div);
+            //                }
+            //            }
+            //B&B-------------------------------------------------------------------
+            //recupero i dati sui b&b
+            //            var div = '';
+            //            var responso = getBEB();
+            //            //se lo status è success
+            //            if (getStatus(responso, 0) === "Success"){
+            //                //e il numero delle chiese è > 0
+            //                if (getNumber(responso, 0) > 0){
+            //                    //creo il div superiore
+            //                    div = '<a href="beb.html" class="list-group-item text-center" '
+            //                        +'id="a_chiese"> B&B<span id="chieseCount" class="badge">'+getNumber(responso, 0)+'</span></a>';
+            //                    //creo il div collapse
+            //                    $('#servizi').append(div);
+            //                }
+            //            }
+            $("#loaderServizi").hide();
+        }
+    </script>
+</html>
