@@ -109,7 +109,6 @@ function alertify(title, message){
 }
 function createCard(type, id, img, title, date, text, link1){
     var card = '';
-    
     if (link1 === null) link1 = '';
     card += '<div class="card">';
     card += '<img class="card-img-top" style="width:100%; heigth:100%;" src="'+img+'" alt="Card image cap">';
@@ -124,4 +123,8 @@ function createCard(type, id, img, title, date, text, link1){
 }
 function likeNotizia(idnotizia){
     //<i class="material-icons">favorite_border</i>
+}
+function logout(){
+    sessionStorage.clear();
+    location.href = 'index.html';
 }

@@ -1,3 +1,9 @@
+
+
+if (getItemSession('infoUser') != '' && getItemSession('infoUser') != null){
+    location.href = 'dashboard_user.html';
+}
+
 function user_login(){
     $('#loginPopup').modal('hide');
     var email = '';
@@ -15,7 +21,6 @@ function user_login(){
                     input[3] = token;
                     responso = '';
                     responso = chiamata_server('login', JSON.stringify(input), 0);
-                    console.log(responso);
                     if (isJson(responso)){
                         responso = JSON.parse(responso);
                         if (responso.info.status === 'success'){
@@ -66,10 +71,11 @@ function user_register(){
                         token = chiamata_server('getToken', JSON.stringify(input), 0);
                         input[5] = token;
                         responso = chiamata_server('register', JSON.stringify(input), 0);
+                        console.log(responso);
                         if (isJson(responso)){
                             responso = JSON.parse(responso);
                             if (responso.info.status === 'success'){
-                                notify(null, 'Attenzione!', 'Ti abbiamo inviato un\' e-mail per l\' attivazione del tuo account. Benvenuto in Bitour!', null);
+                                notify(null, 'Attenzione!', 'Benvenuto in Bitour!', null);
                             }else{
                                 notify(null, 'Attenzione!', responso.info.messaggio, null, null);
                                 navigator.vibrate(3000);

@@ -1,3 +1,6 @@
+if (getItemSession('infoUser') === '' || getItemSession('infoUser') === null){
+    location.href = 'index.html';
+}
 //restituisce la stringa del json delle notizie
 function getNotizieJson(){
     var token = '';
@@ -479,4 +482,5 @@ function createPopup(type, id){
     card += '</div>';
     myApp.popup(card);
 }
+
 
